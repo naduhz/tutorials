@@ -46,10 +46,10 @@ X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.20, random_state=42
 )
 
-classifier = LinearRegression()
-classifier.fit(X_train, y_train)
-with open("linearregression.pickle", "wb") as f:
-    pickle.dump(classifier, f)
+# classifier = LinearRegression()
+# classifier.fit(X_train, y_train)
+# with open("linearregression.pickle", "wb") as f:
+#     pickle.dump(classifier, f)
 
 pickle_in = open("linearregression.pickle", "rb")
 classifier = pickle.load(pickle_in)
