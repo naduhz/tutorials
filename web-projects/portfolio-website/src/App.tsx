@@ -1,8 +1,13 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
 
-function App() {
+import "./components/Navbar/About";
+import "./components/Navbar/Contact";
+import "./components/Navbar/Home";
+import "./components/Navbar/Resume";
+
+const App = () => {
   return (
     <div className="App">
       <header className="App-header">
@@ -19,8 +24,13 @@ function App() {
           Learn React
         </a>
       </header>
+
+      <Home></Home>
+      <About></About>
+      <Resume></Resume>
+      <Contact></Contact>
     </div>
   );
-}
+};
 
 export default App;
