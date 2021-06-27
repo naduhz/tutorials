@@ -4,7 +4,7 @@ import "./App.css";
 import About from "./components/About";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/Navbar/Navbar";
 import Home from "./components/Home";
 import Resume from "./components/Resume";
 
