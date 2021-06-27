@@ -10,7 +10,7 @@ import Resume from "./components/Resume";
 
 const App: React.FC = () => {
   return (
-    <div className="App">
+    <div>
       <nav>
         <Navbar></Navbar>
         <Home></Home>
