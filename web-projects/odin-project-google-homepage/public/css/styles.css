@@ -1,0 +1,51 @@
+body,
+input,
+button {
+  font-size: 14px;
+  font-family: arial, sans-serif;
+  color: #222;
+}
+
+#navbar-container {
+  border: 5px solid black;
+  display: flex;
+  align-items: center;
+  padding: 6px;
+}
+
+#navbar {
+  display: inline-block;
+  flex-grow: 1;
+}
+
+#logo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 92px;
+  max-height: 290px;
+  height: calc(100% - 560px);
+}
+
+#logo {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+  width: auto;
+}
+
+#search-container {
+  border: 5px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 92px;
+  max-height: 290px;
+  height: calc(100% - 560px);
+}
+
+#searchbar {
+  border: 2px solid black;
+  position: relative;
+}
