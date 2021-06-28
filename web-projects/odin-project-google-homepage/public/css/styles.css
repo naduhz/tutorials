@@ -6,6 +6,10 @@ button {
   color: #222;
 }
 
+a {
+  text-decoration: none;
+}
+
 #navbar-container {
   border: 5px solid black;
   display: flex;
@@ -36,7 +40,6 @@ button {
 }
 
 #search-container {
-  border: 5px solid black;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -46,6 +49,50 @@ button {
 }
 
 #searchbar {
-  border: 2px solid black;
+  border: 1px solid silver;
+  border-radius: 25px;
+  padding: 6px;
+  position: relative;
+  width: 50%;
+}
+
+#searchicon {
+  position: relative;
+  float: left;
+}
+
+#searchbarfield {
+  outline: none;
+  padding: 1px;
+  border-style: none;
+  position: relative;
+  width: 89%;
+  height: 26px;
+}
+
+#voiceicon {
+  position: relative;
+  float: right;
+  bottom: 1px;
+}
+
+.voicelink {
+  color: black;
+}
+
+#search-buttons {
+  padding: 18px;
+  position: relative;
+}
+
+#languages-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+}
+
+#languages {
   position: relative;
 }
