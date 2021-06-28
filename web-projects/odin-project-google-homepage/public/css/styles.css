@@ -6,20 +6,48 @@ button {
   color: #222;
 }
 
-a {
-  text-decoration: none;
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  /* border: 1px black solid; */
+  width: auto;
+  height: auto;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 #navbar-container {
-  border: 5px solid black;
+  /* border: 5px solid black; */
   display: flex;
-  align-items: center;
   padding: 6px;
+  justify-content: flex-end;
+  align-items: center;
+  height: auto;
+  min-height: 50px;
+  max-height: 100px;
 }
 
 #navbar {
   display: inline-block;
-  flex-grow: 1;
+}
+
+.navlinks {
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.nav-others {
+  color: rgba(0, 0, 0, 0.87);
+  text-decoration: none;
+}
+
+#profile {
+  border: 1px solid rgba(0, 0, 0, 0.87);
+  background-color: rgb(185, 210, 255);
+  border-radius: 50%;
 }
 
 #logo-container {
@@ -29,6 +57,7 @@ a {
   min-height: 92px;
   max-height: 290px;
   height: calc(100% - 560px);
+  box-sizing: border-box;
 }
 
 #logo {
@@ -78,11 +107,22 @@ a {
 
 .voicelink {
   color: black;
+  text-decoration: none;
 }
 
 #search-buttons {
   padding: 18px;
   position: relative;
+}
+
+.submitbutton {
+  background-color: rgb(239, 239, 239);
+  border-color: rgb(118, 118, 118);
+  margin: 11px 4px;
+  padding: 0 16px;
+  font-size: 14px;
+  cursor: pointer;
+  user-select: none;
 }
 
 #languages-container {
@@ -95,4 +135,8 @@ a {
 
 #languages {
   position: relative;
+}
+
+.language {
+  text-decoration: none;
 }
