@@ -39,6 +39,10 @@ li {
   color: rgba(0, 0, 0, 0.87);
 }
 
+.navlinks:hover {
+  color: black;
+}
+
 .nav-others {
   color: rgba(0, 0, 0, 0.87);
   text-decoration: none;
@@ -66,6 +70,7 @@ li {
   object-fit: contain;
   object-position: center bottom;
   width: auto;
+  margin: 5%;
 }
 
 #search-container {
@@ -83,11 +88,14 @@ li {
   padding: 6px;
   position: relative;
   width: 50%;
+  max-height: 100%;
+  align-items: center;
+  justify-content: center;
 }
 
 #searchicon {
-  position: relative;
   float: left;
+  user-select: none;
 }
 
 #searchbarfield {
@@ -95,14 +103,11 @@ li {
   padding: 1px;
   border-style: none;
   position: relative;
-  width: 89%;
-  height: 26px;
+  width: 70%;
 }
 
 #voiceicon {
-  position: relative;
   float: right;
-  bottom: 1px;
 }
 
 .voicelink {
@@ -112,17 +117,26 @@ li {
 
 #search-buttons {
   padding: 18px;
-  position: relative;
 }
 
 .submitbutton {
   background-color: rgb(239, 239, 239);
-  border-color: rgb(118, 118, 118);
+  border-color: rgba(118, 118, 118, 0.5);
   margin: 11px 4px;
   padding: 0 16px;
   font-size: 14px;
   cursor: pointer;
   user-select: none;
+  height: 2.5em;
+  border-radius: 5px;
+}
+
+.submitbutton:hover {
+  border-color: rgba(0, 0, 0, 0.25);
+}
+
+.submitbutton:active {
+  border-color: rgba(0, 0, 0, 0.5);
 }
 
 #languages-container {
