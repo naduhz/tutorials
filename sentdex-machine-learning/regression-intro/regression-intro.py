@@ -6,7 +6,6 @@ import pickle
 
 from sklearn import preprocessing
 from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LinearRegression
 
 import matplotlib.pyplot as plt
 from matplotlib import style
@@ -35,8 +34,8 @@ df["prediction"] = df[forecast_col].shift(-forecast_out)
 
 X = np.array(df.drop(["prediction"], axis=1))
 X = preprocessing.scale(X)
-X = X[:-forecast_out]
 X_lately = X[-forecast_out:]
+X = X[:-forecast_out]
 
 
 df.dropna(axis=0, inplace=True)
