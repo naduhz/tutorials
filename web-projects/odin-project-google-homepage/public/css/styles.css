@@ -13,7 +13,6 @@ ul {
 }
 
 li {
-  /* border: 1px black solid; */
   width: auto;
   height: auto;
   display: inline-block;
@@ -21,7 +20,6 @@ li {
 }
 
 #navbar-container {
-  /* border: 5px solid black; */
   display: flex;
   padding: 6px;
   justify-content: flex-end;
@@ -37,19 +35,23 @@ li {
 
 .navlinks {
   color: rgba(0, 0, 0, 0.87);
+  text-decoration: none;
+  margin: 10px;
 }
 
 .navlinks:hover {
   color: black;
+  text-decoration: underline;
 }
 
 .nav-others {
   color: rgba(0, 0, 0, 0.87);
   text-decoration: none;
+  margin: 10px;
 }
 
 #profile {
-  border: 1px solid rgba(0, 0, 0, 0.87);
+  border: 0.5px solid transparent;
   background-color: rgb(185, 210, 255);
   border-radius: 50%;
 }
