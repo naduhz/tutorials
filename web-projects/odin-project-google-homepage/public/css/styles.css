@@ -6,6 +6,12 @@ button {
   color: #222;
 }
 
+body {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 ul {
   list-style-type: none;
   margin: 0;
@@ -17,6 +23,13 @@ li {
   height: auto;
   display: inline-block;
   vertical-align: middle;
+}
+
+footer {
+  background-color: #f2f2f2;
+  position: absolute;
+  bottom: 0px;
+  width: 100vw;
 }
 
 #navbar-container {
@@ -155,4 +168,45 @@ li {
 
 .language {
   text-decoration: none;
+}
+
+#location-container {
+  padding: 15px 30px;
+  border-bottom: 1px solid #dadce0;
+  font-size: 15px;
+  color: rgba(0, 0, 0, 0.54);
+}
+
+#others-container {
+  padding: 0px 20px;
+  border-bottom: 1px solid #dadce0;
+  font-size: 15px;
+  color: rgba(0, 0, 0, 0.54);
+  justify-content: space-evenly;
+  display: flex;
+}
+
+#business {
+  justify-content: space-evenly;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+#settings {
+  justify-content: space-evenly;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.footer-link {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.54);
+  display: inline-block;
+  padding: 15px;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.footer-link:hover {
+  text-decoration: underline;
 }
