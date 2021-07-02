@@ -9,11 +9,11 @@ function playRound(playerSelection, computerSelection) {
   switch (playerSelection.toLowerCase()) {
     case "rock":
       result =
-        computerSelection.toLowerCase() === "paper"
+        computerSelection === "Paper"
           ? `You Lose! ${computerSelection} beats ${
               playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)
             }.`
-          : computerSelection.toLowerCase() === "scissors"
+          : computerSelection === "Scissors"
           ? `You Win! ${
               playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)
             } beats ${computerSelection}.`
@@ -21,11 +21,11 @@ function playRound(playerSelection, computerSelection) {
       break;
     case "paper":
       result =
-        computerSelection.toLowerCase() === "scissors"
+        computerSelection === "Scissors"
           ? `You Lose! ${computerSelection} beats ${
               playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)
             }.`
-          : computerSelection.toLowerCase() === "rock"
+          : computerSelection === "Rock"
           ? `You Win! ${
               playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)
             } beats ${computerSelection}.`
@@ -33,17 +33,18 @@ function playRound(playerSelection, computerSelection) {
       break;
     case "scissors":
       result =
-        computerSelection.toLowerCase() === "rock"
+        computerSelection === "Rock"
           ? `You Lose! ${computerSelection} beats ${
               playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)
             }.`
-          : computerSelection.toLowerCase() === "paper"
+          : computerSelection === "Paper"
           ? `You Win! ${
               playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)
             } beats ${computerSelection}.`
           : "It's a draw!";
       break;
   }
+
   console.log(playerSelection, computerSelection, result);
   return result;
 }
