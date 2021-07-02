@@ -49,7 +49,7 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function game() {
-  let winner = 0;
+  let score = 0;
 
   for (let i = 1; i <= 5; i++) {
     let playerSelection = prompt("Enter Rock, Paper or Scissors!");
@@ -62,17 +62,17 @@ function game() {
 
     let roundOutcome = playRound(playerSelection, computerPlay());
     roundOutcome.startsWith("You Win!")
-      ? (winner += 1)
+      ? (score += 1)
       : roundOutcome.startsWith("You Lose!")
-      ? (winner -= 1)
-      : (winner = winner);
+      ? (score -= 1)
+      : (score = score);
   }
 
-  return winner > 0
-    ? console.log(winner, "Player wins!")
-    : winner < 0
-    ? console.log(winner, "Computer wins!")
-    : console.log(winner, "It's a draw!");
+  return score > 0
+    ? console.log(score, "Player wins!")
+    : score < 0
+    ? console.log(score, "Computer wins!")
+    : console.log(score, "It's a draw!");
 }
 
 game();
