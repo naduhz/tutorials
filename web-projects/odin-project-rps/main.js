@@ -1,6 +1,6 @@
 function computerPlay() {
   const COMPUTEROPTIONS = ["Rock", "Paper", "Scissors"];
-  return COMPUTEROPTIONS[Math.floor(Math.random() * OPTIONS.length)];
+  return COMPUTEROPTIONS[Math.floor(Math.random() * COMPUTEROPTIONS.length)];
 }
 
 function playRound(playerSelection, computerSelection) {
@@ -44,36 +44,44 @@ function playRound(playerSelection, computerSelection) {
           : "It's a draw!";
       break;
   }
-
-  console.log(playerSelection, computerSelection, result);
   return result;
 }
 
-function game() {
-  let score = 0;
+// function game() {
+//   let score = 0;
 
-  for (let i = 1; i <= 5; i++) {
-    let playerSelection = prompt("Enter Rock, Paper or Scissors!");
-    const PLAYEROPTIONS = ["rock", "paper", "scissors"];
+//   for (let i = 1; i <= 5; i++) {
+//     let playerSelection = prompt("Enter Rock, Paper or Scissors!");
+//     const PLAYEROPTIONS = ["rock", "paper", "scissors"];
 
-    while (!PLAYEROPTIONS.includes(playerSelection.toLowerCase())) {
-      alert("Please enter a valid option!");
-      playerSelection = prompt("Enter Rock, Paper or Scissors!");
-    }
+//     while (!PLAYEROPTIONS.includes(playerSelection.toLowerCase())) {
+//       alert("Please enter a valid option!");
+//       playerSelection = prompt("Enter Rock, Paper or Scissors!");
+//     }
 
-    let roundOutcome = playRound(playerSelection, computerPlay());
-    roundOutcome.startsWith("You Win!")
-      ? (score += 1)
-      : roundOutcome.startsWith("You Lose!")
-      ? (score -= 1)
-      : (score = score);
-  }
+//     let roundOutcome = playRound(playerSelection, computerPlay());
+//     roundOutcome.startsWith("You Win!")
+//       ? (score += 1)
+//       : roundOutcome.startsWith("You Lose!")
+//       ? (score -= 1)
+//       : (score = score);
+//   }
 
-  return score > 0
-    ? console.log(score, "Player wins!")
-    : score < 0
-    ? console.log(score, "Computer wins!")
-    : console.log(score, "It's a draw!");
-}
+//   return score > 0
+//     ? console.log(score, "Player wins!")
+//     : score < 0
+//     ? console.log(score, "Computer wins!")
+//     : console.log(score, "It's a draw!");
+// }
 
-game();
+const buttons = document.querySelectorAll(".button");
+const resultsDiv = document.querySelector("#results");
+buttons.forEach((button) => {
+  button.addEventListener("click", (event) => {
+    const paragraph = document.createElement("p");
+    paragraph.textContent = playRound(event.target.textContent, computerPlay());
+    resultsDiv.appendChild(paragraph);
+  });
+});
+
+// game();
