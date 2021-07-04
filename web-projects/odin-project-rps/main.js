@@ -47,41 +47,35 @@ function playRound(playerSelection, computerSelection) {
   return result;
 }
 
-// function game() {
-//   let score = 0;
-
-//   for (let i = 1; i <= 5; i++) {
-//     let playerSelection = prompt("Enter Rock, Paper or Scissors!");
-//     const PLAYEROPTIONS = ["rock", "paper", "scissors"];
-
-//     while (!PLAYEROPTIONS.includes(playerSelection.toLowerCase())) {
-//       alert("Please enter a valid option!");
-//       playerSelection = prompt("Enter Rock, Paper or Scissors!");
-//     }
-
-//     let roundOutcome = playRound(playerSelection, computerPlay());
-//     roundOutcome.startsWith("You Win!")
-//       ? (score += 1)
-//       : roundOutcome.startsWith("You Lose!")
-//       ? (score -= 1)
-//       : (score = score);
-//   }
-
-//   return score > 0
-//     ? console.log(score, "Player wins!")
-//     : score < 0
-//     ? console.log(score, "Computer wins!")
-//     : console.log(score, "It's a draw!");
-// }
+let playerScore = 0;
+let computerScore = 0;
 
 const buttons = document.querySelectorAll(".button");
-const resultsDiv = document.querySelector("#results");
+
 buttons.forEach((button) => {
   button.addEventListener("click", (event) => {
-    const paragraph = document.createElement("p");
-    paragraph.textContent = playRound(event.target.textContent, computerPlay());
-    resultsDiv.appendChild(paragraph);
+    const roundOutcome = playRound(event.target.textContent, computerPlay());
+    if (roundOutcome.startsWith("You Win!")) {
+      playerScore += 1;
+    } else if (roundOutcome.startsWith("You Lose!")) {
+      computerScore += 1;
+    }
+
+    const roundOutcomeParagraph = document.querySelector("#roundOutcome");
+    roundOutcomeParagraph.textContent = roundOutcome;
+
+    console.log(playerScore, computerScore);
   });
 });
 
-// game();
+if (playerScore === 5) {
+  const resultsDiv = document.querySelector("#results");
+  const gameOutcomeParagraph = document.createElement("p");
+  gameOutcomeParagraph.textContent = "Player wins!";
+  resultsDiv.appendChild(gameOutcomeParagraph);
+} else if (computerScore === 5) {
+  const resultsDiv = document.querySelector("#results");
+  const gameOutcomeParagraph = document.createElement("p");
+  gameOutcomeParagraph.textContent = "Computer wins!";
+  resultsDiv.appendChild(gameOutcomeParagraph);
+}
