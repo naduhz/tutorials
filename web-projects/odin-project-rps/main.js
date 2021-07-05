@@ -64,18 +64,27 @@ buttons.forEach((button) => {
     const roundOutcomeParagraph = document.querySelector("#roundOutcome");
     roundOutcomeParagraph.textContent = roundOutcome;
 
-    console.log(playerScore, computerScore);
+    const scoreTrackerParagraph = document.querySelector("#scoreTracker");
+    scoreTrackerParagraph.textContent = `Player Score:${playerScore} Computer Score:${computerScore}`;
+
+    if (playerScore === 5) {
+      const gameOutcomeParagraph = document.querySelector("#gameOutcome");
+      gameOutcomeParagraph.textContent = "Player wins!";
+      playerScore = 0;
+      computerScore = 0;
+      setTimeout(() => {
+        gameOutcomeParagraph.textContent = "";
+      }, 2000);
+    } else if (computerScore === 5) {
+      const gameOutcomeParagraph = document.querySelector("#gameOutcome");
+      gameOutcomeParagraph.textContent = "Computer wins!";
+      playerScore = 0;
+      computerScore = 0;
+      setTimeout(() => {
+        gameOutcomeParagraph.textContent = "";
+      }, 2000);
+
+      console.log(playerScore, computerScore);
+    }
   });
 });
-
-if (playerScore === 5) {
-  const resultsDiv = document.querySelector("#results");
-  const gameOutcomeParagraph = document.createElement("p");
-  gameOutcomeParagraph.textContent = "Player wins!";
-  resultsDiv.appendChild(gameOutcomeParagraph);
-} else if (computerScore === 5) {
-  const resultsDiv = document.querySelector("#results");
-  const gameOutcomeParagraph = document.createElement("p");
-  gameOutcomeParagraph.textContent = "Computer wins!";
-  resultsDiv.appendChild(gameOutcomeParagraph);
-}
