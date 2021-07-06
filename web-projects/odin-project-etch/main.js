@@ -25,3 +25,11 @@ changeGridSizeButton.addEventListener("click", (event) => {
   gridReset();
   makeGrid(rows, cols);
 });
+
+const squaresArray = Array.from(gridContainer.children);
+
+squaresArray.forEach((square) => {
+  square.addEventListener("mouseover", (event) => {
+    square.className += " squareMousedOver";
+  });
+});

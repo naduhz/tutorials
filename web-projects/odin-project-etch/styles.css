@@ -50,6 +50,6 @@
   height: 1fr;
 }
 
-.square:hover {
+.squareMousedOver {
   background-color: black;
 }
