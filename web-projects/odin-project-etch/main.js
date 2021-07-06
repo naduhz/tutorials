@@ -15,12 +15,13 @@ function makeGrid(rows, cols) {
   }
 }
 
-makeGrid(70, 70);
+makeGrid(16, 16);
 
-// const changeGridSizeButton = document.querySelector("#gridSize");
-// changeGridSizeButton.addEventListener("click", (event) => {
-//   const rows = prompt("Rows? (Limit: 100)");
-//   const cols = prompt("Columns? (Limit: 100)");
+const changeGridSizeButton = document.querySelector("#gridSize");
+changeGridSizeButton.addEventListener("click", (event) => {
+  const rows = prompt("Rows? (Limit: 100)");
+  const cols = prompt("Columns? (Limit: 100)");
 
-//   gridReset();
-// });
+  gridReset();
+  makeGrid(rows, cols);
+});
