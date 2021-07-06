@@ -13,6 +13,13 @@ function makeGrid(rows, cols) {
     const square = document.createElement("div");
     gridContainer.appendChild(square).className = "square";
   }
+
+  const squaresArray = Array.from(gridContainer.children);
+  squaresArray.forEach((square) => {
+    square.addEventListener("mouseover", (event) => {
+      square.className += " squareMousedOver";
+    });
+  });
 }
 
 makeGrid(16, 16);
@@ -24,12 +31,4 @@ changeGridSizeButton.addEventListener("click", (event) => {
 
   gridReset();
   makeGrid(rows, cols);
-});
-
-const squaresArray = Array.from(gridContainer.children);
-
-squaresArray.forEach((square) => {
-  square.addEventListener("mouseover", (event) => {
-    square.className += " squareMousedOver";
-  });
 });
