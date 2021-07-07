@@ -17,7 +17,7 @@ function makeGrid(rows, cols) {
   const squaresArray = Array.from(gridContainer.children);
   squaresArray.forEach((square) => {
     square.addEventListener("mouseover", (event) => {
-      square.className += " squareMousedOver";
+      square.style.backgroundColor = "#000000";
     });
   });
 }
@@ -38,4 +38,16 @@ changeGridSizeButton.addEventListener("click", (event) => {
 
   gridReset();
   makeGrid(parseInt(rows), parseInt(cols));
+});
+
+const colorPicker = document.querySelector("#colorPicker");
+colorPicker.addEventListener("change", (event) => {
+  const color = colorPicker.value;
+
+  const squaresArray = Array.from(gridContainer.children);
+  squaresArray.forEach((square) => {
+    square.addEventListener("mouseover", (event) => {
+      square.style.backgroundColor = color;
+    });
+  });
 });

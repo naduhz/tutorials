@@ -9,10 +9,15 @@
   </head>
   <body>
     <h1 id="title">Etch-A-Sketch</h1>
-    <div id="gridContainer"></div>
-    <div id="buttonContainer">
+    <div id="optionsContainer">
       <button class="button" id="gridSize">Change Grid Size</button>
+      <div id="changeColorContainer">
+        <label id="colorPickerButton">Change Color:</label>
+        <input type="color" id="colorPicker" value="#000000" />
+      </div>
     </div>
+    <div id="gridContainer"></div>
+
     <script src="main.js"></script>
   </body>
 </html>

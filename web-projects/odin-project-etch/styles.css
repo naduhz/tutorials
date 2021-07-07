@@ -19,11 +19,12 @@
   grid-template-columns: repeat(var(--grid-cols), 1fr);
 }
 
-#buttonContainer {
+#optionsContainer {
   border: 1px solid black;
   width: fit-content;
-  margin: 0 auto;
-  padding: 0 0;
+  margin: 5px auto;
+  padding: 5px;
+  justify-content: space-between;
 }
 
 .button {
@@ -33,6 +34,7 @@
   border-radius: 25px;
   width: fit-content;
   height: fit-content;
+  display: inline-block;
 }
 
 .button:hover {
@@ -42,6 +44,11 @@
 .button:active {
   background-color: rgba(1, 1, 1, 0.2);
   transform: translateY(1px);
+}
+
+#changeColorContainer {
+  border: 1px solid black;
+  display: inline-block;
 }
 
 .square {
