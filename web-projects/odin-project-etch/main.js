@@ -40,6 +40,20 @@ changeGridSizeButton.addEventListener("click", (event) => {
   makeGrid(parseInt(rows), parseInt(cols));
 });
 
+const randomizeColorButton = document.querySelector("#randomizeColor");
+randomizeColorButton.addEventListener("click", (event) => {
+  const randomColorGenerator = () => {
+    const randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
+    return randomColor;
+  };
+  const squaresArray = Array.from(gridContainer.children);
+  squaresArray.forEach((square) => {
+    square.addEventListener("mouseover", (event) => {
+      square.style.backgroundColor = randomColorGenerator();
+    });
+  });
+});
+
 const colorPicker = document.querySelector("#colorPicker");
 colorPicker.addEventListener("change", (event) => {
   const color = colorPicker.value;
