@@ -9,7 +9,6 @@ body {
 }
 
 #title {
-  border: 1px solid black;
   width: fit-content;
   margin: 0 auto;
 }
@@ -25,7 +24,6 @@ body {
 }
 
 .optionsContainer {
-  border: 1px solid black;
   width: fit-content;
   margin: 5px auto;
   padding: 5px;
@@ -56,6 +54,33 @@ body {
 #changeColorContainer {
   border: 1px solid black;
   display: inline-block;
+}
+
+#sliderContainer {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 250px;
+  appearance: none;
+  background: black;
+  height: 7px;
+  border-radius: 25px;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: 20px; /* Set a specific slider handle width */
+  height: 20px; /* Slider handle height */
+  background: black; /* Green background */
+  border-radius: 50%;
+  cursor: pointer; /* Cursor on hover */
 }
 
 .square {

@@ -5,11 +5,11 @@ function gridReset() {
   }
 }
 
-function makeGrid(rows, cols) {
-  gridContainer.style.setProperty("--grid-rows", rows);
-  gridContainer.style.setProperty("--grid-cols", cols);
+function makeGrid(size) {
+  gridContainer.style.setProperty("--grid-rows", size);
+  gridContainer.style.setProperty("--grid-cols", size);
 
-  for (let i = 1; i <= rows * cols; i++) {
+  for (let i = 1; i <= size * size; i++) {
     const square = document.createElement("div");
     gridContainer.appendChild(square).className = "square";
   }
@@ -22,7 +22,7 @@ function makeGrid(rows, cols) {
   });
 }
 
-makeGrid(16, 16);
+makeGrid(16);
 
 const blackButton = document.querySelector("#black");
 blackButton.addEventListener("click", (event) => {
@@ -78,18 +78,9 @@ clearButton.addEventListener("click", (event) => {
   });
 });
 
-const changeGridSizeButton = document.querySelector("#gridSize");
-changeGridSizeButton.addEventListener("click", (event) => {
-  do {
-    var rows = prompt("Rows? (Limit: 100)");
-    if (rows === null) return;
-  } while (!parseInt(rows) || parseInt(rows) > 100);
-
-  do {
-    var cols = prompt("Columns? (Limit: 100)");
-    if (cols === null) return;
-  } while (!parseInt(cols) || parseInt(cols) > 100);
-
+const changeGridSizeSlider = document.querySelector("#gridSize");
+changeGridSizeSlider.addEventListener("change", (event) => {
+  const size = changeGridSizeSlider.value;
   gridReset();
-  makeGrid(parseInt(rows), parseInt(cols));
+  makeGrid(size);
 });
