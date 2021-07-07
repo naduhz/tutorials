@@ -4,6 +4,7 @@
 }
 
 body {
+  background-image: url("bg-img.jpg");
   background-color: silver;
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -11,6 +12,8 @@ body {
 #title {
   width: fit-content;
   margin: 0 auto;
+  color: rgba(192, 192, 192, 1);
+  text-shadow: 2px 2px black;
 }
 
 #gridContainer {
@@ -31,29 +34,41 @@ body {
 }
 
 .button {
-  border: 1px solid black;
+  border: 2px solid black;
   font-size: 16px;
-  background-color: rgba(1, 1, 1, 0);
+  background-color: rgba(192, 192, 192, 1);
   cursor: pointer;
-  border-radius: 25px;
+  border-radius: 5px;
   width: fit-content;
   height: fit-content;
   display: inline-block;
 }
 
 .button:hover {
-  background-color: rgba(1, 1, 1, 0.1);
+  background-color: rgba(192, 192, 192, 0.9);
   border-color: snow;
 }
 
 .button:active {
-  background-color: rgba(1, 1, 1, 0.2);
+  background-color: rgba(192, 192, 192, 0.7);
+  transform: translateY(1px);
+}
+
+.buttonPressed {
+  background-color: rgba(192, 192, 192, 0.7);
   transform: translateY(1px);
 }
 
 #changeColorContainer {
-  border: 1px solid black;
+  border: 2px solid black;
   display: inline-block;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+#colorPicker,
+#colorPickerLabel {
+  cursor: pointer;
 }
 
 #sliderContainer {
@@ -78,7 +93,7 @@ body {
   appearance: none;
   width: 20px; /* Set a specific slider handle width */
   height: 20px; /* Slider handle height */
-  background: black; /* Green background */
+  background: silver; /* Silver background */
   border-radius: 50%;
   cursor: pointer; /* Cursor on hover */
 }
@@ -88,4 +103,11 @@ body {
   width: 1fr;
   height: 1fr;
   background-color: silver;
+}
+
+#copyright {
+  width: fit-content;
+  font-size: 16px;
+  color: rgba(192, 192, 192, 1);
+  margin: 20px auto;
 }

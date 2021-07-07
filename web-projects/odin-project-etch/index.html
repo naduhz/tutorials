@@ -10,13 +10,13 @@
   <body>
     <h1 id="title">Etch-A-Sketch</h1>
     <div class="optionsContainer" id="colorOptionsContainer">
-      <button class="button" id="black">Black</button>
+      <button class="button buttonPressed" id="black">Black</button>
       <button class="button" id="eraser">Eraser</button>
       <button class="button" id="randomizeColor">Rainbow</button>
-      <div id="changeColorContainer">
-        <label id="colorPickerLabel">Change Color:</label>
+      <button id="colorButton" class="button">
+        Color:
         <input type="color" id="colorPicker" value="#000000" />
-      </div>
+      </button>
     </div>
     <div id="gridContainer"></div>
     <div class="optionsContainer" id="gridOptionsContainer">
@@ -32,7 +32,9 @@
         />
       </div>
     </div>
-
+    <div id="copyright">
+      Copyright &#169; 2021 Jordan Lee | The Odin Project
+    </div>
     <script src="main.js"></script>
   </body>
 </html>
