@@ -26,9 +26,16 @@ makeGrid(16, 16);
 
 const changeGridSizeButton = document.querySelector("#gridSize");
 changeGridSizeButton.addEventListener("click", (event) => {
-  const rows = prompt("Rows? (Limit: 100)");
-  const cols = prompt("Columns? (Limit: 100)");
+  do {
+    var rows = prompt("Rows? (Limit: 100)");
+    if (rows === null) return;
+  } while (!parseInt(rows) || parseInt(rows) > 100);
+
+  do {
+    var cols = prompt("Columns? (Limit: 100)");
+    if (cols === null) return;
+  } while (!parseInt(cols) || parseInt(cols) > 100);
 
   gridReset();
-  makeGrid(rows, cols);
+  makeGrid(parseInt(rows), parseInt(cols));
 });
