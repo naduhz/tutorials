@@ -62,7 +62,7 @@ clearButton.addEventListener("click", (event) => {
 });
 
 plusMinusButton.addEventListener("click", (event) => {
-  function updateDisplay() {
+  if (numberMemory[0] == null) {
     if (calculatorDisplay.textContent.charAt(0) !== "-") {
       let tempArray = Array.from(calculatorDisplay.textContent);
       tempArray.unshift("-");
@@ -72,31 +72,54 @@ plusMinusButton.addEventListener("click", (event) => {
       tempArray.shift();
       calculatorDisplay.textContent = tempArray.join("");
     }
+  } else {
+    if (numberMemory[1] == null) {
+      numberMemory[1] = "-0";
+    } else {
+      if (numberMemory[1].charAt(0) !== "-") {
+        let tempArray = Array.from(numberMemory[1]);
+        tempArray.unshift("-");
+        numberMemory[1] = tempArray.join("");
+      } else {
+        let tempArray = Array.from(numberMemory[1]);
+        tempArray.shift();
+        numberMemory[1] = tempArray.join("");
+      }
+    }
   }
-
-  updateDisplay();
-  numberMemory[0] = parseFloat(calculatorDisplay.textContent);
 
   console.log(operatePressed, operatorMemory, numberMemory);
 });
 
 decimalButton.addEventListener("click", (event) => {
-  if (![...calculatorDisplay.textContent].includes(".")) {
-    let tempArray = Array.from(calculatorDisplay.textContent);
-    tempArray.push(".");
-    calculatorDisplay.textContent = tempArray.join("");
+  if (numberMemory[0] == null) {
+    if (![...calculatorDisplay.textContent].includes(".")) {
+      let tempArray = Array.from(calculatorDisplay.textContent);
+      tempArray.push(".");
+      calculatorDisplay.textContent = tempArray.join("");
+    }
+  } else {
+    if (numberMemory[1] == null) {
+      numberMemory[1] = "0.";
+    } else {
+      if (![...numberMemory[1]].includes(".")) {
+        let tempArray = Array.from(numberMemory[1]);
+        tempArray.push(".");
+        numberMemory[1] = tempArray.join("");
+      }
+    }
   }
 
   console.log(operatePressed, operatorMemory, numberMemory);
 });
 
 squareRootButton.addEventListener("click", (event) => {
-  if (parseFloat(calculatorDisplay.textContent) < 0) {
-    calculatorDisplay.textContent = "ERROR";
-    return;
-  }
+  if (numberMemory[0] == null) {
+    if (parseFloat(calculatorDisplay.textContent) < 0) {
+      calculatorDisplay.textContent = "ERROR";
+      return;
+    }
 
-  if (numberMemory[1] == null) {
     calculatorDisplay.textContent = squareroot(
       parseFloat(calculatorDisplay.textContent)
     )
@@ -106,6 +129,12 @@ squareRootButton.addEventListener("click", (event) => {
     numberMemory[0] = parseFloat(calculatorDisplay.textContent);
     numberMemory[1] = null;
   } else {
+    if (numberMemory[1] == null) return;
+    if (parseFloat(numberMemory[1]) < 0) {
+      calculatorDisplay.textContent = "ERROR";
+      return;
+    }
+
     numberMemory[0] = parseFloat(calculatorDisplay.textContent);
     numberMemory[1] = squareroot(parseFloat(numberMemory[1]))
       .toString()
@@ -128,33 +157,48 @@ for (let i = 0; i < 10; i++) {
       if (parseFloat(calculatorDisplay.textContent) !== 0) {
         updateDisplay();
       } else {
-        if (![...calculatorDisplay.textContent].includes(".")) {
-          calculatorDisplay.textContent = i;
+        if (calculatorDisplay.textContent.charAt(0) !== "-") {
+          if (![...calculatorDisplay.textContent].includes(".")) {
+            calculatorDisplay.textContent = i;
+          } else {
+            updateDisplay();
+          }
         } else {
-          updateDisplay();
+          if (![...calculatorDisplay.textContent].includes(".")) {
+            calculatorDisplay.textContent = `-${i}`;
+          } else {
+            updateDisplay();
+          }
         }
       }
     } else {
-      if (calculatorDisplay.textContent.charAt(0) !== "-") {
-        if (numberMemory[1] == null) {
-          numberMemory[1] = `${i}`;
-        } else {
-          numberMemory[1] += `${i}`;
-        }
+      if (numberMemory[1] == null) {
+        numberMemory[1] = `${i}`;
       } else {
-        if (parseFloat(calculatorDisplay.textContent) !== 0) {
-          updateDisplay();
-          numberMemory[0] = parseFloat(calculatorDisplay.textContent);
-        } else if (![...calculatorDisplay.textContent].includes(".")) {
-          calculatorDisplay.textContent = `-${i}`;
-          numberMemory[0] = parseFloat(calculatorDisplay.textContent);
+        if (numberMemory[1].charAt(0) !== "-") {
+          if (![...numberMemory[1]].includes(".")) {
+            if (numberMemory[1].charAt(0) == 0) {
+              numberMemory[1] = `${i}`;
+            } else {
+              numberMemory[1] += `${i}`;
+            }
+          } else {
+            numberMemory[1] += `${i}`;
+          }
         } else {
-          updateDisplay();
-          numberMemory[0] = parseFloat(calculatorDisplay.textContent);
+          if (parseFloat(numberMemory[1]) == 0) {
+            if (![...numberMemory[1]].includes(".")) {
+              numberMemory[1] = `-${i}`;
+            } else {
+              numberMemory[1] += `${i}`;
+            }
+          } else {
+            numberMemory[1] += `${i}`;
+          }
         }
       }
+      console.log(operatePressed, operatorMemory, numberMemory);
     }
-    console.log(operatePressed, operatorMemory, numberMemory);
   });
 }
 
