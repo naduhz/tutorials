@@ -60,12 +60,16 @@ plusMinusButton.addEventListener("click", (event) => {
 for (let i = 0; i < 10; i++) {
   const number = document.querySelector(`#num${i}`);
   number.addEventListener("click", (event) => {
-    if (calculatorDisplay.textContent !== "0") {
+    if (parseInt(calculatorDisplay.textContent) !== 0) {
       let tempArray = Array.from(calculatorDisplay.textContent);
       tempArray.push(i);
       calculatorDisplay.textContent = tempArray.join("");
     } else {
-      calculatorDisplay.textContent = i;
+      if (calculatorDisplay.textContent.charAt(0) !== "-") {
+        calculatorDisplay.textContent = i;
+      } else {
+        calculatorDisplay.textContent = `-${i}`;
+      }
     }
   });
 }
