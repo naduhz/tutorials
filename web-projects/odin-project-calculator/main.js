@@ -17,17 +17,36 @@ const divide = (a, b) => a / b;
 const squareroot = (a) => Math.sqrt(a);
 const operate = (operator, array) => operator(array[0], array[1]);
 
-function allClear() {
+allClearButton.addEventListener("click", (event) => {
   calculatorDisplay.textContent = 0;
-  return;
-}
-function clear() {
-  calculatorDisplay.textContent = calculatorDisplay.textContent.substring(
-    0,
-    calculatorDisplay.textContent.length - 1
-  );
-}
-function plusMinus() {
+});
+
+clearButton.addEventListener("click", (event) => {
+  function clear() {
+    calculatorDisplay.textContent = calculatorDisplay.textContent.substring(
+      0,
+      calculatorDisplay.textContent.length - 1
+    );
+  }
+
+  if (calculatorDisplay.textContent.length !== 1) {
+    if (calculatorDisplay.textContent.length !== 2) {
+      clear();
+    } else {
+      if (calculatorDisplay.textContent.charAt(0) !== "-") {
+        clear();
+      } else {
+        calculatorDisplay.textContent = "-0";
+      }
+    }
+  } else {
+    if (calculatorDisplay.textContent !== "0") {
+      calculatorDisplay.textContent = 0;
+    }
+  }
+});
+
+plusMinusButton.addEventListener("click", (event) => {
   if (calculatorDisplay.textContent.charAt(0) !== "-") {
     let tempArray = Array.from(calculatorDisplay.textContent);
     tempArray.unshift("-");
@@ -37,24 +56,6 @@ function plusMinus() {
     tempArray.shift();
     calculatorDisplay.textContent = tempArray.join("");
   }
-}
-
-allClearButton.addEventListener("click", (event) => {
-  allClear();
-});
-
-clearButton.addEventListener("click", (event) => {
-  if (calculatorDisplay.textContent.length !== 1) {
-    clear();
-  } else {
-    if (calculatorDisplay.textContent !== "0") {
-      calculatorDisplay.textContent = 0;
-    }
-  }
-});
-
-plusMinusButton.addEventListener("click", (event) => {
-  plusMinus();
 });
 
 for (let i = 0; i < 10; i++) {
