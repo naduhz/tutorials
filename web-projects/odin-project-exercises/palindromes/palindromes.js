@@ -3,7 +3,7 @@ const palindromes = function (string) {
     .filter((character) => /[a-zA-Z]/.test(character))
     .join();
   const reversedString = Array.from(cleanedString).reverse().join("");
-  return cleanedString === reversedString ? true : false;
+  return cleanedString === reversedString;
 };
 
 module.exports = palindromes;
