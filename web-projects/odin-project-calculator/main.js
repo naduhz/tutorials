@@ -115,6 +115,7 @@ decimalButton.addEventListener("click", (event) => {
 
 squareRootButton.addEventListener("click", (event) => {
   if (numberMemory[0] == null) {
+    if (numberMemory[1] == null || numberMemory[1] == 0) return;
     if (parseFloat(calculatorDisplay.textContent) < 0) {
       calculatorDisplay.textContent = "ERROR";
       return;
@@ -129,7 +130,7 @@ squareRootButton.addEventListener("click", (event) => {
     numberMemory[0] = parseFloat(calculatorDisplay.textContent);
     numberMemory[1] = null;
   } else {
-    if (numberMemory[1] == null) return;
+    if (numberMemory[1] == null || numberMemory[1] == 0) return;
     if (parseFloat(numberMemory[1]) < 0) {
       calculatorDisplay.textContent = "ERROR";
       return;
