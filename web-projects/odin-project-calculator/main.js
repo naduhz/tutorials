@@ -1,13 +1,14 @@
 const calculatorDisplay = document.querySelector("#calculatorDisplay");
 const allClearButton = document.querySelector("#allclear");
 const clearButton = document.querySelector("#clear");
+const plusMinusButton = document.querySelector("#plusminus");
+
 const addButton = document.querySelector("#add");
 const subtractButton = document.querySelector("#subtract");
 const multiplyButton = document.querySelector("#multiply");
 const divideButton = document.querySelector("#divide");
 const decimalButton = document.querySelector("#decimal");
 const equalButton = document.querySelector("#equal");
-const plusMinusButton = document.querySelector("#plusminus");
 const squareRootButton = document.querySelector("#squareroot");
 
 const add = (a, b) => a + b;
@@ -67,10 +68,30 @@ for (let i = 0; i < 10; i++) {
       calculatorDisplay.textContent = tempArray.join("");
     } else {
       if (calculatorDisplay.textContent.charAt(0) !== "-") {
-        calculatorDisplay.textContent = i;
+        if (![...calculatorDisplay.textContent].includes(".")) {
+          calculatorDisplay.textContent = i;
+        } else {
+          let tempArray = Array.from(calculatorDisplay.textContent);
+          tempArray.push(i);
+          calculatorDisplay.textContent = tempArray.join("");
+        }
       } else {
-        calculatorDisplay.textContent = `-${i}`;
+        if (![...calculatorDisplay.textContent].includes(".")) {
+          calculatorDisplay.textContent = `-${i}`;
+        } else {
+          let tempArray = Array.from(calculatorDisplay.textContent);
+          tempArray.push(i);
+          calculatorDisplay.textContent = tempArray.join("");
+        }
       }
     }
   });
 }
+
+decimalButton.addEventListener("click", (event) => {
+  if (![...calculatorDisplay.textContent].includes(".")) {
+    let tempArray = Array.from(calculatorDisplay.textContent);
+    tempArray.push(".");
+    calculatorDisplay.textContent = tempArray.join("");
+  }
+});
