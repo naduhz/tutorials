@@ -3,6 +3,7 @@ const allClearButton = document.querySelector("#allclear");
 const clearButton = document.querySelector("#clear");
 const plusMinusButton = document.querySelector("#plusminus");
 const decimalButton = document.querySelector("#decimal");
+const squareRootButton = document.querySelector("#squareroot");
 
 const addButton = document.querySelector("#add");
 const subtractButton = document.querySelector("#subtract");
@@ -10,19 +11,23 @@ const multiplyButton = document.querySelector("#multiply");
 const divideButton = document.querySelector("#divide");
 
 const equalButton = document.querySelector("#equal");
-const squareRootButton = document.querySelector("#squareroot");
 
 var operatorMemory;
+var numberMemory = Array(2);
 
 const add = (a, b) => a + b;
 const subtract = (a, b) => a - b;
 const multiply = (a, b) => a * b;
-const divide = (a, b) => a / b;
+const divide = (a, b) => {
+  return b == 0 ? "ERROR" : a / b;
+};
 const squareroot = (a) => Math.sqrt(a);
 const operate = (operator, array) => operator(array[0], array[1]);
 
 allClearButton.addEventListener("click", (event) => {
   calculatorDisplay.textContent = 0;
+  operatorMemory = undefined;
+  numberMemory = Array(2);
 });
 
 clearButton.addEventListener("click", (event) => {
@@ -112,4 +117,27 @@ squareRootButton.addEventListener("click", (event) => {
   )
     .toString()
     .substring(0, 13);
+});
+
+addButton.addEventListener("click", (event) => {
+  operatorMemory = add;
+  if (numberMemory[1] == null) return;
+
+  numberMemory[1] = parseFloat(calculatorDisplay.textContent);
+  calculatorDisplay.textContent = operate(operatorMemory, numberMemory);
+  console.log(operatorMemory, numberMemory);
+});
+
+equalButton.addEventListener("click", (event) => {
+  if (!operatorMemory) return;
+
+  if (numberMemory[1] == null) {
+    numberMemory[1] = parseFloat(calculatorDisplay.textContent);
+    calculatorDisplay.textContent = operate(operatorMemory, numberMemory);
+    console.log(operatorMemory, numberMemory);
+  } else {
+    numberMemory[0] = parseFloat(calculatorDisplay.textContent);
+    calculatorDisplay.textContent = operate(operatorMemory, numberMemory);
+    console.log(operatorMemory, numberMemory);
+  }
 });
