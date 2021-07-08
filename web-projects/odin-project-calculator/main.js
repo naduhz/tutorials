@@ -2,14 +2,17 @@ const calculatorDisplay = document.querySelector("#calculatorDisplay");
 const allClearButton = document.querySelector("#allclear");
 const clearButton = document.querySelector("#clear");
 const plusMinusButton = document.querySelector("#plusminus");
+const decimalButton = document.querySelector("#decimal");
 
 const addButton = document.querySelector("#add");
 const subtractButton = document.querySelector("#subtract");
 const multiplyButton = document.querySelector("#multiply");
 const divideButton = document.querySelector("#divide");
-const decimalButton = document.querySelector("#decimal");
+
 const equalButton = document.querySelector("#equal");
 const squareRootButton = document.querySelector("#squareroot");
+
+var operatorMemory;
 
 const add = (a, b) => a + b;
 const subtract = (a, b) => a - b;
@@ -28,6 +31,9 @@ clearButton.addEventListener("click", (event) => {
       0,
       calculatorDisplay.textContent.length - 1
     );
+  }
+  if (!parseInt(calculatorDisplay.textContent)) {
+    calculatorDisplay.textContent = "0";
   }
 
   if (calculatorDisplay.textContent.length !== 1) {
@@ -94,4 +100,16 @@ decimalButton.addEventListener("click", (event) => {
     tempArray.push(".");
     calculatorDisplay.textContent = tempArray.join("");
   }
+});
+
+squareRootButton.addEventListener("click", (event) => {
+  if (parseFloat(calculatorDisplay.textContent) < 0) {
+    calculatorDisplay.textContent = "ERROR";
+  }
+
+  calculatorDisplay.textContent = squareroot(
+    parseInt(calculatorDisplay.textContent)
+  )
+    .toString()
+    .substring(0, 13);
 });
