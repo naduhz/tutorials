@@ -40,7 +40,7 @@ clearButton.addEventListener("click", (event) => {
       calculatorDisplay.textContent.length - 1
     );
   }
-  if (!parseInt(calculatorDisplay.textContent)) {
+  if (!parseFloat(calculatorDisplay.textContent)) {
     calculatorDisplay.textContent = "0";
   }
 
@@ -63,7 +63,7 @@ clearButton.addEventListener("click", (event) => {
 
 plusMinusButton.addEventListener("click", (event) => {
   if (!operatePressed) {
-    if (numberMemory[0] == null) {
+    if (numberMemory[0] == undefined) {
       if (calculatorDisplay.textContent.charAt(0) !== "-") {
         let tempArray = Array.from(calculatorDisplay.textContent);
         tempArray.unshift("-");
@@ -74,17 +74,20 @@ plusMinusButton.addEventListener("click", (event) => {
         calculatorDisplay.textContent = tempArray.join("");
       }
     } else {
-      if (numberMemory[1] == null) {
+      if (numberMemory[1] == undefined) {
         numberMemory[1] = "-0";
+        calculatorDisplay.textContent = numberMemory[1];
       } else {
         if (numberMemory[1].charAt(0) !== "-") {
           let tempArray = Array.from(numberMemory[1]);
           tempArray.unshift("-");
           numberMemory[1] = tempArray.join("");
+          calculatorDisplay.textContent = numberMemory[1];
         } else {
           let tempArray = Array.from(numberMemory[1]);
           tempArray.shift();
           numberMemory[1] = tempArray.join("");
+          calculatorDisplay.textContent = numberMemory[1];
         }
       }
     }
@@ -103,34 +106,32 @@ plusMinusButton.addEventListener("click", (event) => {
     numberMemory = Array(2);
     operatePressed = false;
   }
-
-  console.log(operatePressed, operatorMemory, numberMemory);
 });
 
 decimalButton.addEventListener("click", (event) => {
-  if (numberMemory[0] == null) {
+  if (numberMemory[0] == undefined) {
     if (![...calculatorDisplay.textContent].includes(".")) {
       let tempArray = Array.from(calculatorDisplay.textContent);
       tempArray.push(".");
       calculatorDisplay.textContent = tempArray.join("");
     }
   } else {
-    if (numberMemory[1] == null) {
+    if (numberMemory[1] == undefined) {
       numberMemory[1] = "0.";
+      calculatorDisplay.textContent = numberMemory[1];
     } else {
       if (![...numberMemory[1]].includes(".")) {
         let tempArray = Array.from(numberMemory[1]);
         tempArray.push(".");
         numberMemory[1] = tempArray.join("");
+        calculatorDisplay.textContent = numberMemory[1];
       }
     }
   }
-
-  console.log(operatePressed, operatorMemory, numberMemory);
 });
 
 squareRootButton.addEventListener("click", (event) => {
-  if (numberMemory[0] == null) {
+  if (numberMemory[0] == undefined) {
     if (calculatorDisplay.textContent == 0) return;
     if (parseFloat(calculatorDisplay.textContent) < 0) {
       calculatorDisplay.textContent = "ERROR";
@@ -139,26 +140,33 @@ squareRootButton.addEventListener("click", (event) => {
 
     calculatorDisplay.textContent = squareroot(
       parseFloat(calculatorDisplay.textContent)
-    )
-      .toString()
-      .substring(0, 13);
+    ).toString();
 
     numberMemory[0] = parseFloat(calculatorDisplay.textContent);
-    numberMemory[1] = null;
   } else {
-    if (numberMemory[1] == null || numberMemory[1] == 0) return;
-    if (parseFloat(numberMemory[1]) < 0) {
-      calculatorDisplay.textContent = "ERROR";
-      return;
+    if (!operatePressed) {
+      if (!numberMemory[1] || numberMemory[1] == 0) return;
+      if (parseFloat(numberMemory[1]) < 0) {
+        calculatorDisplay.textContent = "ERROR";
+        return;
+      }
+
+      numberMemory[1] = squareroot(parseFloat(numberMemory[1])).toString();
+      calculatorDisplay.textContent = numberMemory[1];
+    } else {
+      if (calculatorDisplay.textContent == 0) return;
+      if (parseFloat(calculatorDisplay.textContent) < 0) {
+        calculatorDisplay.textContent = "ERROR";
+        return;
+      }
+
+      calculatorDisplay.textContent = squareroot(
+        parseFloat(calculatorDisplay.textContent)
+      ).toString();
+
+      numberMemory[0] = parseFloat(calculatorDisplay.textContent);
     }
-
-    numberMemory[0] = parseFloat(calculatorDisplay.textContent);
-    numberMemory[1] = squareroot(parseFloat(numberMemory[1]))
-      .toString()
-      .substring(0, 13);
   }
-
-  console.log(operatePressed, operatorMemory, numberMemory);
 });
 
 for (let i = 0; i < 10; i++) {
@@ -171,7 +179,7 @@ for (let i = 0; i < 10; i++) {
     }
 
     if (!operatePressed) {
-      if (numberMemory[0] == null) {
+      if (numberMemory[0] == undefined) {
         if (parseFloat(calculatorDisplay.textContent) !== 0) {
           updateDisplay();
         } else {
@@ -190,28 +198,35 @@ for (let i = 0; i < 10; i++) {
           }
         }
       } else {
-        if (numberMemory[1] == null) {
+        if (numberMemory[1] == undefined) {
           numberMemory[1] = `${i}`;
+          calculatorDisplay.textContent = numberMemory[1];
         } else {
           if (numberMemory[1].charAt(0) !== "-") {
             if (![...numberMemory[1]].includes(".")) {
               if (numberMemory[1].charAt(0) == 0) {
                 numberMemory[1] = `${i}`;
+                calculatorDisplay.textContent = numberMemory[1];
               } else {
                 numberMemory[1] += `${i}`;
+                calculatorDisplay.textContent = numberMemory[1];
               }
             } else {
               numberMemory[1] += `${i}`;
+              calculatorDisplay.textContent = numberMemory[1];
             }
           } else {
             if (parseFloat(numberMemory[1]) == 0) {
               if (![...numberMemory[1]].includes(".")) {
                 numberMemory[1] = `-${i}`;
+                calculatorDisplay.textContent = numberMemory[1];
               } else {
                 numberMemory[1] += `${i}`;
+                calculatorDisplay.textContent = numberMemory[1];
               }
             } else {
               numberMemory[1] += `${i}`;
+              calculatorDisplay.textContent = numberMemory[1];
             }
           }
         }
@@ -222,8 +237,6 @@ for (let i = 0; i < 10; i++) {
       numberMemory = Array(2);
       operatePressed = false;
     }
-
-    console.log(operatePressed, operatorMemory, numberMemory);
   });
 }
 
@@ -232,21 +245,23 @@ addButton.addEventListener("click", (event) => {
     operatorMemory = add;
     operatePressed = false;
 
-    if (numberMemory[1] == null) {
+    if (numberMemory[1] == undefined) {
       numberMemory[0] = parseFloat(calculatorDisplay.textContent);
     } else {
       calculatorDisplay.textContent = operate(operatorMemory, numberMemory);
       numberMemory[0] = parseFloat(calculatorDisplay.textContent);
-      numberMemory[1] = null;
+      numberMemory[1] = undefined;
     }
   } else {
-    calculatorDisplay.textContent = operate(operatorMemory, numberMemory);
-    numberMemory[0] = parseFloat(calculatorDisplay.textContent);
-    numberMemory[1] = null;
-    operatorMemory = add;
+    if (numberMemory[1] == undefined) {
+      operatorMemory = add;
+    } else {
+      calculatorDisplay.textContent = operate(operatorMemory, numberMemory);
+      numberMemory[0] = parseFloat(calculatorDisplay.textContent);
+      numberMemory[1] = undefined;
+      operatorMemory = add;
+    }
   }
-
-  console.log(operatePressed, operatorMemory, numberMemory);
 });
 
 subtractButton.addEventListener("click", (event) => {
@@ -254,21 +269,23 @@ subtractButton.addEventListener("click", (event) => {
     operatorMemory = subtract;
     operatePressed = false;
 
-    if (numberMemory[1] == null) {
+    if (numberMemory[1] == undefined) {
       numberMemory[0] = parseFloat(calculatorDisplay.textContent);
     } else {
       calculatorDisplay.textContent = operate(operatorMemory, numberMemory);
       numberMemory[0] = parseFloat(calculatorDisplay.textContent);
-      numberMemory[1] = null;
+      numberMemory[1] = undefined;
     }
   } else {
-    calculatorDisplay.textContent = operate(operatorMemory, numberMemory);
-    numberMemory[0] = parseFloat(calculatorDisplay.textContent);
-    numberMemory[1] = null;
-    operatorMemory = subtract;
+    if (numberMemory[1] == undefined) {
+      operatorMemory = subtract;
+    } else {
+      calculatorDisplay.textContent = operate(operatorMemory, numberMemory);
+      numberMemory[0] = parseFloat(calculatorDisplay.textContent);
+      numberMemory[1] = undefined;
+      operatorMemory = subtract;
+    }
   }
-
-  console.log(operatePressed, operatorMemory, numberMemory);
 });
 
 multiplyButton.addEventListener("click", (event) => {
@@ -276,21 +293,23 @@ multiplyButton.addEventListener("click", (event) => {
     operatorMemory = multiply;
     operatePressed = false;
 
-    if (numberMemory[1] == null) {
+    if (numberMemory[1] == undefined) {
       numberMemory[0] = parseFloat(calculatorDisplay.textContent);
     } else {
       calculatorDisplay.textContent = operate(operatorMemory, numberMemory);
       numberMemory[0] = parseFloat(calculatorDisplay.textContent);
-      numberMemory[1] = null;
+      numberMemory[1] = undefined;
     }
   } else {
-    calculatorDisplay.textContent = operate(operatorMemory, numberMemory);
-    numberMemory[0] = parseFloat(calculatorDisplay.textContent);
-    numberMemory[1] = null;
-    operatorMemory = multiply;
+    if (numberMemory[1] == undefined) {
+      operatorMemory = multiply;
+    } else {
+      calculatorDisplay.textContent = operate(operatorMemory, numberMemory);
+      numberMemory[0] = parseFloat(calculatorDisplay.textContent);
+      numberMemory[1] = undefined;
+      operatorMemory = multiply;
+    }
   }
-
-  console.log(operatePressed, operatorMemory, numberMemory);
 });
 
 divideButton.addEventListener("click", (event) => {
@@ -298,34 +317,75 @@ divideButton.addEventListener("click", (event) => {
     operatorMemory = divide;
     operatePressed = false;
 
-    if (numberMemory[1] == null) {
+    if (numberMemory[1] == undefined) {
       numberMemory[0] = parseFloat(calculatorDisplay.textContent);
     } else {
       calculatorDisplay.textContent = operate(operatorMemory, numberMemory);
       numberMemory[0] = parseFloat(calculatorDisplay.textContent);
-      numberMemory[1] = null;
+      numberMemory[1] = undefined;
     }
   } else {
-    calculatorDisplay.textContent = operate(operatorMemory, numberMemory);
-    numberMemory[0] = parseFloat(calculatorDisplay.textContent);
-    numberMemory[1] = null;
-    operatorMemory = divide;
+    if (numberMemory[1] == undefined) {
+      operatorMemory = divide;
+    } else {
+      calculatorDisplay.textContent = operate(operatorMemory, numberMemory);
+      numberMemory[0] = parseFloat(calculatorDisplay.textContent);
+      numberMemory[1] = undefined;
+      operatorMemory = divide;
+    }
   }
-
-  console.log(operatePressed, operatorMemory, numberMemory);
 });
 
 equalButton.addEventListener("click", (event) => {
   if (!operatorMemory) return;
-  if (numberMemory[0] == null || numberMemory[1] == null) return;
+  if (numberMemory[0] == undefined || numberMemory[1] == undefined) return;
 
-  numberMemory[0] = parseFloat(calculatorDisplay.textContent);
   calculatorDisplay.textContent = operate(operatorMemory, numberMemory);
 
   numberMemory[0] = parseFloat(calculatorDisplay.textContent);
-  numberMemory[1] = null;
+  numberMemory[1] = undefined;
   operatePressed = true;
-  operatorMemory = null;
+  operatorMemory = undefined;
+});
 
-  console.log(operatePressed, operatorMemory, numberMemory);
+window.addEventListener("keydown", (event) => {
+  if (event.repeat) return;
+
+  if (event.key === "Backspace") {
+    document.getElementById("allclear").click();
+  }
+  if (event.key === "Delete") {
+    document.getElementById("clear").click();
+  }
+  if (event.key === "_") {
+    document.getElementById("plusminus").click();
+  }
+  if (event.key === "`") {
+    document.getElementById("squareroot").click();
+  }
+  if (event.key === ".") {
+    document.getElementById("decimal").click();
+  }
+
+  if (event.key === "+") {
+    document.getElementById("add").click();
+  }
+  if (event.key === "-") {
+    document.getElementById("subtract").click();
+  }
+  if (event.key === "*") {
+    document.getElementById("multiply").click();
+  }
+  if (event.key === "/") {
+    document.getElementById("divide").click();
+  }
+  if (event.key === "Enter") {
+    document.getElementById("equal").click();
+  }
+
+  for (let i = 1; i < 10; i++) {
+    if (event.key === `${i}`) {
+      document.getElementById(`num${i}`).click();
+    }
+  }
 });
