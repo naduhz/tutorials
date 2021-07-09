@@ -341,6 +341,7 @@ equalButton.addEventListener("click", (event) => {
   if (numberMemory[0] == undefined || numberMemory[1] == undefined) return;
 
   calculatorDisplay.textContent = operate(operatorMemory, numberMemory);
+  console.log(calculatorDisplay.textContent);
 
   numberMemory[0] = parseFloat(calculatorDisplay.textContent);
   numberMemory[1] = undefined;
