@@ -383,7 +383,7 @@ window.addEventListener("keydown", (event) => {
     document.getElementById("equal").click();
   }
 
-  for (let i = 1; i < 10; i++) {
+  for (let i = 0; i < 10; i++) {
     if (event.key === `${i}`) {
       document.getElementById(`num${i}`).click();
     }
