@@ -12,22 +12,40 @@
     </header>
     <br />
     <div id="booksContainer">
-      <button class="book">gay</button>
-      <button class="book">gay</button>
-      <button class="book">gay</button>
-      <button class="book">gay</button>
-      <button class="book">gay</button>
-      <button class="book">gay</button>
-      <button class="book">gay</button>
-      <button class="book">gay</button>
-      <button class="book">gay</button>
-      <button class="book">gay</button>
-      <button class="book">gay</button>
-      <button class="book">gay</button>
-      <button class="book">gay</button>
-      <button class="book">gay</button>
-
       <button class="book" id="newBook">+</button>
+    </div>
+
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <span class="closeButton" id="modalCloseButton">&times; </span>
+          <div id="modal-header-text">Add New Book</div>
+        </div>
+        <div class="modal-body">
+          <form action="" id="formContainer" autocomplete="off">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" /><br />
+            <label for="author">Author:</label>
+            <input type="text" id="author" name="author" /><br />
+            <label for="pages">Pages:</label>
+            <input type="text" id="pages" name="pages" /><br />
+
+            <div class="radioContainer">
+              <div class="radioOptions" id="read">
+                <input type="radio" id="readStatusYes" name="readStatus" />
+                <label for="readStatusYes">Read</label>
+              </div>
+
+              <div class="radioOptions" id="notRead">
+                <input type="radio" id="readStatusNo" name="readStatus" />
+                <label for="readStatusNo">Not Read</label>
+              </div>
+            </div>
+            <br />
+            <input type="submit" value="Confirm" id="confirm" />
+          </form>
+        </div>
+      </div>
     </div>
     <script src="main.js"></script>
   </body>

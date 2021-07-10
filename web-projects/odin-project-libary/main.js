@@ -1,3 +1,7 @@
+const newBook = document.querySelector("#newBook");
+const modal = document.querySelector("#modal");
+const modalCloseButton = document.querySelector("#modalCloseButton");
+
 let myLibrary = [];
 
 function Book(title, author, pages, status) {
@@ -17,5 +21,21 @@ function addBookToLibrary(book) {
   myLibrary.push(book);
 }
 
-const newBook = document.querySelector("#newBook");
-newBook.addEventListener("click", (event) => {});
+window.addEventListener("click", windowCloseModal);
+
+newBook.addEventListener("click", openModal);
+modalCloseButton.addEventListener("click", closeModal);
+
+function openModal() {
+  modal.style.display = "block";
+}
+
+function closeModal() {
+  modal.style.display = "none";
+}
+
+function windowCloseModal(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}

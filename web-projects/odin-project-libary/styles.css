@@ -1,6 +1,7 @@
 html {
   box-sizing: border-box;
   font-size: 16px;
+  font-family: "Helvetica Neue", sans-serif;
 }
 
 *,
@@ -98,7 +99,7 @@ button:active {
   margin: 0 auto;
   border: 2px solid black;
   border-radius: 10px;
-  padding: 5px;
+  padding: 20px;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(5, 1fr);
@@ -115,4 +116,120 @@ button:active {
   height: 150px;
   border: 1px solid grey;
   box-shadow: 0 0 1px 2px hsl(0, 0%, 65%);
+}
+
+#newBook {
+  user-select: none;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: #015b6f;
+  margin: 20% auto;
+  width: 500px;
+  height: fit-content;
+  box-shadow: 0 5px 9px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+  animation-name: openModal;
+  animation-duration: 750ms;
+  border-radius: 5px;
+}
+
+@keyframes openModal {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-header {
+  background-color: black;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  padding: 10px;
+}
+
+.closeButton {
+  color: #ccc;
+  float: right;
+  font-size: 30px;
+}
+
+.closeButton:hover,
+.closeButton:focus {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#modal-header-text {
+  color: snow;
+  font-family: "Open Sans", sans-serif;
+  font-size: 30px;
+  font-weight: 300;
+  line-height: 32px;
+  text-align: center;
+  user-select: none;
+}
+
+.modal-body {
+  padding: 20px;
+}
+
+.modal-body label {
+  color: snow;
+  font-family: "Open Sans", sans-serif;
+  font-size: 30px;
+  font-weight: 300;
+  text-align: center;
+  user-select: none;
+}
+
+.modal-body input {
+  color: black;
+  font-family: "Open Sans", sans-serif;
+  font-size: 30px;
+  font-weight: 300;
+  text-align: center;
+}
+
+#formContainer {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}
+
+.radioContainer {
+  display: flex;
+  justify-content: center;
+}
+
+#confirm {
+  width: fit-content;
+  cursor: pointer;
+}
+
+#confirm {
+  width: fit-content;
+  cursor: pointer;
+}
+
+#confirm:hover {
+  transform: scale(105%, 105%);
+}
+
+#confirm:active {
+  transform: scale(103%, 103%);
+  transition-duration: 1ms;
 }
