@@ -22,7 +22,7 @@
           <div id="modal-header-text">Add New Book</div>
         </div>
         <div class="modal-body">
-          <form action="" id="formContainer" autocomplete="off">
+          <form action="#" id="newBookForm" autocomplete="off">
             <label for="title">Title:</label>
             <input type="text" id="title" name="title" /><br />
             <label for="author">Author:</label>
@@ -32,7 +32,12 @@
 
             <div class="radioContainer">
               <div class="radioOptions" id="read">
-                <input type="radio" id="readStatusYes" name="readStatus" />
+                <input
+                  type="radio"
+                  id="readStatusYes"
+                  name="readStatus"
+                  required
+                />
                 <label for="readStatusYes">Read</label>
               </div>
 

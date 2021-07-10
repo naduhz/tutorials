@@ -1,6 +1,8 @@
-const newBook = document.querySelector("#newBook");
+const newBookButton = document.querySelector("#newBook");
 const modal = document.querySelector("#modal");
 const modalCloseButton = document.querySelector("#modalCloseButton");
+const newBookForm = document.querySelector("#newBookForm");
+const booksContainer = document.querySelector("#booksContainer");
 
 let myLibrary = [];
 
@@ -23,8 +25,9 @@ function addBookToLibrary(book) {
 
 window.addEventListener("click", windowCloseModal);
 
-newBook.addEventListener("click", openModal);
+newBookButton.addEventListener("click", openModal);
 modalCloseButton.addEventListener("click", closeModal);
+newBookForm.addEventListener("submit", updateLibrary);
 
 function openModal() {
   modal.style.display = "block";
@@ -38,4 +41,30 @@ function windowCloseModal(event) {
   if (event.target == modal) {
     modal.style.display = "none";
   }
+}
+
+function updateLibrary(event) {
+  const newBookTitle = document.getElementById("title").value;
+  const newBookAuthor = document.getElementById("author").value;
+  const newBookPages = document.getElementById("pages").value;
+  const newBookReadStatus = document.getElementById("readStatusYes").value
+    ? true
+    : false;
+
+  const newBook = new Book(
+    newBookTitle,
+    newBookAuthor,
+    newBookPages,
+    newBookReadStatus
+  );
+
+  addBookToLibrary(newBook);
+
+  const button = document.createElement("button");
+  const newBookElement = button;
+
+  newBookElement.className = "book";
+  newBookElement.innerText = newBook.title;
+
+  booksContainer.insertBefore(newBookElement, booksContainer.firstChild);
 }
