@@ -44,6 +44,8 @@ function windowCloseModal(event) {
 }
 
 function updateLibrary(event) {
+  event.preventDefault();
+
   const newBookTitle = document.getElementById("title").value;
   const newBookAuthor = document.getElementById("author").value;
   const newBookPages = document.getElementById("pages").value;
