@@ -69,4 +69,7 @@ function updateLibrary(event) {
   newBookElement.innerText = newBook.title;
 
   booksContainer.insertBefore(newBookElement, booksContainer.firstChild);
+
+  closeModal();
+  newBookForm.reset();
 }
