@@ -83,6 +83,15 @@ header {
   margin-left: auto;
 }
 
+#refresh:hover {
+  transform: scale(105%, 105%);
+}
+
+#refresh:active {
+  transform: scale(104%, 104%);
+  transition-duration: 1ms;
+}
+
 button {
   width: fit-content;
   height: fit-content;

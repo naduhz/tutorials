@@ -65,7 +65,18 @@ function updateLibrary(event) {
 
 function addBookToLibrary(book) {
   myLibrary.push(book);
+  refreshDisplay();
 }
+
+function removeBookFromLibrary(book) {
+  const index = myLibrary.indexOf(book);
+  myLibrary.splice(index, 1);
+  refreshDisplay();
+}
+
+refreshButton.addEventListener("click", (event) => {
+  refreshDisplay();
+});
 
 function refreshDisplay() {
   const allChildElements = Array.from(booksContainer.childNodes);
@@ -81,9 +92,10 @@ function refreshDisplay() {
     newBookElement.innerText = book.title;
 
     booksContainer.insertBefore(newBookElement, booksContainer.firstChild);
+    newBookElement.addEventListener("click", (event) => {
+      if (event.target === newBookElement) {
+        removeBookFromLibrary(book);
+      }
+    });
   });
 }
-
-refreshButton.addEventListener("click", (event) => {
-  refreshDisplay();
-});
