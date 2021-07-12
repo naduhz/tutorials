@@ -63,7 +63,7 @@ header {
   display: flex;
 }
 
-#headerText {
+.headerText {
   font-family: "Helvetica Neue", sans-serif;
   font-size: 45px;
   font-weight: bold;
@@ -75,6 +75,12 @@ header {
   align-items: flex-end;
   padding-left: 10px;
   padding-bottom: 5px;
+}
+
+#refresh {
+  user-select: none;
+  cursor: pointer;
+  margin-left: auto;
 }
 
 button {

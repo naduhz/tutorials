@@ -3,6 +3,7 @@ const modal = document.querySelector("#modal");
 const modalCloseButton = document.querySelector("#modalCloseButton");
 const newBookForm = document.querySelector("#newBookForm");
 const booksContainer = document.querySelector("#booksContainer");
+const refreshButton = document.querySelector("#refresh");
 
 let myLibrary = [];
 
@@ -17,10 +18,6 @@ function Book(title, author, pages, status) {
       status ? "read" : "not read yet"
     }`;
   };
-}
-
-function addBookToLibrary(book) {
-  myLibrary.push(book);
 }
 
 window.addEventListener("click", windowCloseModal);
@@ -62,14 +59,31 @@ function updateLibrary(event) {
 
   addBookToLibrary(newBook);
 
-  const button = document.createElement("button");
-  const newBookElement = button;
-
-  newBookElement.className = "book";
-  newBookElement.innerText = newBook.title;
-
-  booksContainer.insertBefore(newBookElement, booksContainer.firstChild);
-
   closeModal();
   newBookForm.reset();
 }
+
+function addBookToLibrary(book) {
+  myLibrary.push(book);
+}
+
+function refreshDisplay() {
+  const allChildElements = Array.from(booksContainer.childNodes);
+  for (let i = 0; i < allChildElements.length - 3; i++) {
+    booksContainer.removeChild(booksContainer.firstChild);
+  }
+
+  myLibrary.forEach((book) => {
+    const button = document.createElement("button");
+    const newBookElement = button;
+
+    newBookElement.className = "book";
+    newBookElement.innerText = book.title;
+
+    booksContainer.insertBefore(newBookElement, booksContainer.firstChild);
+  });
+}
+
+refreshButton.addEventListener("click", (event) => {
+  refreshDisplay();
+});
