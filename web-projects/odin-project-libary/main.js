@@ -85,17 +85,41 @@ function refreshDisplay() {
   }
 
   myLibrary.forEach((book) => {
-    const button = document.createElement("button");
-    const newBookElement = button;
+    const newBookElement = document.createElement("button");
+    const optionsContainer = document.createElement("div");
+    const newBookDetails = document.createElement("div");
+    const newBookRemove = document.createElement("div");
 
-    newBookElement.className = "book";
+    newBookElement.className = "book-wrapper";
     newBookElement.innerText = book.title;
 
+    newBookDetails.className = "text-wrapper book-details";
+    newBookDetails.innerText = "Details";
+    newBookRemove.className = "text-wrapper book-remove";
+    newBookRemove.innerText = "Remove";
+
+    optionsContainer.className = "optionsContainer";
+
+    optionsContainer.appendChild(newBookDetails);
+    optionsContainer.appendChild(newBookRemove);
+
     booksContainer.insertBefore(newBookElement, booksContainer.firstChild);
-    newBookElement.addEventListener("click", (event) => {
-      if (event.target === newBookElement) {
+    newBookElement.appendChild(optionsContainer);
+
+    newBookDetails.addEventListener("click", (event) => {
+      if (event.target === newBookDetails) {
+        displayDetails(book);
+      }
+    });
+
+    newBookRemove.addEventListener("click", (event) => {
+      if (event.target === newBookRemove) {
         removeBookFromLibrary(book);
       }
     });
   });
+}
+
+function displayDetails(book) {
+  console.log(book);
 }

@@ -123,7 +123,7 @@ button:active {
   background-color: #4ea8bc;
 }
 
-.book {
+.book-wrapper {
   margin: 5px;
   background-color: grey;
   color: snow;
@@ -133,7 +133,69 @@ button:active {
   box-shadow: 0 0 1px 2px hsl(0, 0%, 65%);
 }
 
+.text-wrapper {
+  opacity: 0;
+  transition: 500ms ease;
+  background-color: blue;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: -30%;
+  width: 35%;
+  height: auto;
+}
+
+.optionsContainer {
+  background-color: transparent;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.book-wrapper:hover .text-wrapper {
+  opacity: 0.9;
+}
+
+.book-details {
+  width: 60px;
+  height: fit-content;
+  margin-bottom: 10px;
+  background-color: green;
+  z-index: 1;
+  top: 50px;
+  float: left;
+  border-radius: 5px;
+  border: 1px solid grey;
+}
+
+.book-details:hover {
+  border: 1px solid snow;
+}
+
+.book-remove {
+  width: 60px;
+  height: fit-content;
+  margin-top: 10px;
+  background-color: red;
+  z-index: 1;
+  top: 50px;
+  float: left;
+  border-radius: 5px;
+  border: 1px solid grey;
+}
+
+.book-remove:hover {
+  border: 1px solid snow;
+}
+
 #newBook {
+  margin: 5px;
+  background-color: grey;
+  color: snow;
+  width: 100px;
+  height: 150px;
+  border: 1px solid grey;
+  box-shadow: 0 0 1px 2px hsl(0, 0%, 65%);
   user-select: none;
 }
 
