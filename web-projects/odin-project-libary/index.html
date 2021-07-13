@@ -18,11 +18,11 @@
       <button id="newBook">+</button>
     </div>
 
-    <div id="modal" class="modal">
+    <div id="formModal" class="modal">
       <div class="modal-content">
         <div class="modal-header">
-          <span class="closeButton" id="modalCloseButton">&times; </span>
-          <div id="modal-header-text">Add New Book</div>
+          <span class="closeButton" id="formModalCloseButton">&times; </span>
+          <div class="modal-header-text">Add New Book</div>
         </div>
 
         <div class="modal-body">
@@ -56,6 +56,30 @@
         </div>
       </div>
     </div>
+
+    <div id="bookModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <span class="closeButton" id="bookModalCloseButton">&times; </span>
+          <div class="modal-header-text">Details</div>
+        </div>
+
+        <div class="modal-body" id='details-wrapper'>
+          <div class='book-labels'>Title:</div>
+          <div id="bookTitle"></div>
+          <br />
+          <div class='book-labels'>Author:</div>
+          <div id="bookAuthor"></div>
+          <br />
+          <div class='book-labels'>Pages:</div>
+          <div id="bookPages"></div>
+          <br />
+          <div class='book-labels'>Status:</div>
+          <div id="bookStatus"></div>
+        </div>
+      </div>
+    </div>
+  </div>
 
     <script src="main.js"></script>
   </body>

@@ -250,7 +250,7 @@ button:active {
   cursor: pointer;
 }
 
-#modal-header-text {
+.modal-header-text {
   color: snow;
   font-family: "Open Sans", sans-serif;
   font-size: 30px;
@@ -309,4 +309,15 @@ button:active {
 #confirm:active {
   transform: scale(103%, 103%);
   transition-duration: 1ms;
+}
+
+#details-wrapper {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  color: snow;
+  font-family: "Open Sans", sans-serif;
+  font-size: 30px;
+  font-weight: 300;
+  text-align: center;
 }

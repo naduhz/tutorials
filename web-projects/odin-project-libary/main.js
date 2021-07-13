@@ -1,6 +1,8 @@
 const newBookButton = document.querySelector("#newBook");
-const modal = document.querySelector("#modal");
-const modalCloseButton = document.querySelector("#modalCloseButton");
+const formModal = document.querySelector("#formModal");
+const bookModal = document.querySelector("#bookModal");
+const formModalCloseButton = document.querySelector("#formModalCloseButton");
+const bookModalCloseButton = document.querySelector("#bookModalCloseButton");
 const newBookForm = document.querySelector("#newBookForm");
 const booksContainer = document.querySelector("#booksContainer");
 const refreshButton = document.querySelector("#refresh");
@@ -15,28 +17,28 @@ function Book(title, author, pages, status) {
 
   this.info = function () {
     return `${title} by ${author}, ${pages} pages, ${
-      status ? "read" : "not read yet"
+      status ? "Read" : "Not read yet"
     }`;
   };
 }
 
-window.addEventListener("click", windowCloseModal);
+window.addEventListener("click", windowCloseFormModal);
 
-newBookButton.addEventListener("click", openModal);
-modalCloseButton.addEventListener("click", closeModal);
+newBookButton.addEventListener("click", openFormModal);
+formModalCloseButton.addEventListener("click", closeFormModal);
 newBookForm.addEventListener("submit", updateLibrary);
 
-function openModal() {
-  modal.style.display = "block";
+function openFormModal() {
+  formModal.style.display = "block";
 }
 
-function closeModal() {
-  modal.style.display = "none";
+function closeFormModal() {
+  formModal.style.display = "none";
 }
 
-function windowCloseModal(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
+function windowCloseFormModal(event) {
+  if (event.target == formModal) {
+    formModal.style.display = "none";
   }
 }
 
@@ -59,7 +61,7 @@ function updateLibrary(event) {
 
   addBookToLibrary(newBook);
 
-  closeModal();
+  closeFormModal();
   newBookForm.reset();
 }
 
@@ -108,7 +110,10 @@ function refreshDisplay() {
 
     newBookDetails.addEventListener("click", (event) => {
       if (event.target === newBookDetails) {
-        displayDetails(book);
+        editDetails(book);
+        openBookModal();
+        window.addEventListener("click", windowCloseBookModal);
+        bookModalCloseButton.addEventListener("click", closeBookModal);
       }
     });
 
@@ -120,6 +125,28 @@ function refreshDisplay() {
   });
 }
 
-function displayDetails(book) {
-  console.log(book);
+function editDetails(book) {
+  const bookTitle = document.querySelector("#bookTitle");
+  const bookAuthor = document.querySelector("#bookAuthor");
+  const bookPages = document.querySelector("#bookPages");
+  const bookStatus = document.querySelector("#bookStatus");
+
+  bookTitle.innerText = `${book.title}`;
+  bookAuthor.innerText = `${book.author}`;
+  bookPages.innerText = `${book.pages}`;
+  bookStatus.innerText = `${book.status ? "Read" : "Not read yet"}`;
+}
+
+function openBookModal() {
+  bookModal.style.display = "block";
+}
+
+function closeBookModal() {
+  bookModal.style.display = "none";
+}
+
+function windowCloseBookModal(event) {
+  if (event.target == bookModal) {
+    bookModal.style.display = "none";
+  }
 }
