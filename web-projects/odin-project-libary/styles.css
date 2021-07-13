@@ -77,22 +77,6 @@ header {
   padding-bottom: 5px;
 }
 
-#refresh {
-  user-select: none;
-  cursor: pointer;
-  margin-left: auto;
-  margin-right: 15px;
-}
-
-#refresh:hover {
-  transform: scale(105%, 105%);
-}
-
-#refresh:active {
-  transform: scale(104%, 104%);
-  transition-duration: 1ms;
-}
-
 button {
   width: fit-content;
   height: fit-content;

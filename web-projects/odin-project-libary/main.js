@@ -5,7 +5,6 @@ const formModalCloseButton = document.querySelector("#formModalCloseButton");
 const bookModalCloseButton = document.querySelector("#bookModalCloseButton");
 const newBookForm = document.querySelector("#newBookForm");
 const booksContainer = document.querySelector("#booksContainer");
-const refreshButton = document.querySelector("#refresh");
 const toggleReadButton = document.querySelector("#toggle-read");
 
 let myLibrary = [];
@@ -53,7 +52,7 @@ function updateLibrary(event) {
   const newBookTitle = document.getElementById("title").value;
   const newBookAuthor = document.getElementById("author").value;
   const newBookPages = document.getElementById("pages").value;
-  const newBookReadStatus = document.getElementById("readStatusYes").value
+  const newBookReadStatus = document.getElementById("readStatusYes").checked
     ? true
     : false;
 
@@ -80,10 +79,6 @@ function removeBookFromLibrary(book) {
   myLibrary.splice(index, 1);
   refreshDisplay();
 }
-
-refreshButton.addEventListener("click", (event) => {
-  refreshDisplay();
-});
 
 function refreshDisplay() {
   const allChildElements = Array.from(booksContainer.childNodes);
@@ -117,16 +112,21 @@ function refreshDisplay() {
       if (event.target === newBookDetails) {
         editDetails(book);
         book.status
-          ? toggleReadButton.setAttribute("checked", "true")
-          : toggleReadButton.setAttribute("checked", "false");
+          ? (toggleReadButton.checked = true)
+          : (toggleReadButton.checked = false);
+
         openBookModal();
         window.addEventListener("click", windowCloseBookModal);
         bookModalCloseButton.addEventListener("click", closeBookModal);
-        toggleReadButton.addEventListener("change", (event) => {
-          book.toggle();
-          editDetails(book);
-        });
       }
+    });
+
+    toggleReadButton.addEventListener("change", (event) => {
+      book.toggle();
+      editDetails(book);
+      book.status
+        ? (toggleReadButton.checked = true)
+        : (toggleReadButton.checked = false);
     });
 
     newBookRemove.addEventListener("click", (event) => {
