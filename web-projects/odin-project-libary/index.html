@@ -11,7 +11,9 @@
       <div class="headerText">Library</div>
       <div class="headerText" id="refresh">&#x21bb;</div>
     </header>
+
     <br />
+
     <div id="booksContainer">
       <button id="newBook">+</button>
     </div>
@@ -22,6 +24,7 @@
           <span class="closeButton" id="modalCloseButton">&times; </span>
           <div id="modal-header-text">Add New Book</div>
         </div>
+
         <div class="modal-body">
           <form action="#" id="newBookForm" autocomplete="off">
             <label for="title">Title:</label>
@@ -29,7 +32,7 @@
             <label for="author">Author:</label>
             <input type="text" id="author" name="author" /><br />
             <label for="pages">Pages:</label>
-            <input type="text" id="pages" name="pages" /><br />
+            <input type="number" id="pages" name="pages" /><br />
 
             <div class="radioContainer">
               <div class="radioOptions" id="read">
@@ -53,6 +56,7 @@
         </div>
       </div>
     </div>
+
     <script src="main.js"></script>
   </body>
 </html>
