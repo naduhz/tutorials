@@ -6,6 +6,7 @@ const bookModalCloseButton = document.querySelector("#bookModalCloseButton");
 const newBookForm = document.querySelector("#newBookForm");
 const booksContainer = document.querySelector("#booksContainer");
 const refreshButton = document.querySelector("#refresh");
+const toggleReadButton = document.querySelector("#toggle-read");
 
 let myLibrary = [];
 
@@ -19,6 +20,10 @@ function Book(title, author, pages, status) {
     return `${title} by ${author}, ${pages} pages, ${
       status ? "Read" : "Not read yet"
     }`;
+  };
+
+  this.toggle = function () {
+    this.status = this.status ? false : true;
   };
 }
 
@@ -111,9 +116,16 @@ function refreshDisplay() {
     newBookDetails.addEventListener("click", (event) => {
       if (event.target === newBookDetails) {
         editDetails(book);
+        book.status
+          ? toggleReadButton.setAttribute("checked", "true")
+          : toggleReadButton.setAttribute("checked", "false");
         openBookModal();
         window.addEventListener("click", windowCloseBookModal);
         bookModalCloseButton.addEventListener("click", closeBookModal);
+        toggleReadButton.addEventListener("change", (event) => {
+          book.toggle();
+          editDetails(book);
+        });
       }
     });
 
