@@ -9,6 +9,16 @@ const toggleReadButton = document.querySelector("#toggle-read");
 
 let myLibrary = [];
 
+if (!localStorage.getItem("library")) {
+  addToStorage(myLibrary);
+} else {
+  myLibrary = JSON.parse(localStorage.getItem("library"));
+  myLibrary = myLibrary.map(
+    (book) => new Book(book.title, book.author, book.pages, book.status)
+  );
+  refreshDisplay();
+}
+
 function Book(title, author, pages, status) {
   this.title = title;
   this.author = author;
@@ -71,12 +81,14 @@ function updateLibrary(event) {
 
 function addBookToLibrary(book) {
   myLibrary.push(book);
+  addToStorage(myLibrary);
   refreshDisplay();
 }
 
 function removeBookFromLibrary(book) {
   const index = myLibrary.indexOf(book);
   myLibrary.splice(index, 1);
+  addToStorage(myLibrary);
   refreshDisplay();
 }
 
@@ -92,8 +104,15 @@ function refreshDisplay() {
     const newBookDetails = document.createElement("div");
     const newBookRemove = document.createElement("div");
 
+    const processedBook = new Book(
+      book.title,
+      book.author,
+      book.pages,
+      book.status
+    );
+
     newBookElement.className = "book-wrapper";
-    newBookElement.innerText = book.title;
+    newBookElement.innerText = processedBook.title;
 
     newBookDetails.className = "text-wrapper book-details";
     newBookDetails.innerText = "Details";
@@ -110,30 +129,37 @@ function refreshDisplay() {
 
     newBookDetails.addEventListener("click", (event) => {
       if (event.target === newBookDetails) {
-        editDetails(book);
-        book.status
+        editDetails(processedBook);
+        processedBook.status
           ? (toggleReadButton.checked = true)
           : (toggleReadButton.checked = false);
-
         openBookModal();
         window.addEventListener("click", windowCloseBookModal);
         bookModalCloseButton.addEventListener("click", closeBookModal);
       }
     });
 
-    toggleReadButton.addEventListener("change", (event) => {
-      book.toggle();
-      editDetails(book);
-      book.status
-        ? (toggleReadButton.checked = true)
-        : (toggleReadButton.checked = false);
-    });
-
     newBookRemove.addEventListener("click", (event) => {
       if (event.target === newBookRemove) {
-        removeBookFromLibrary(book);
+        removeBookFromLibrary(processedBook);
       }
     });
+  });
+
+  toggleReadButton.addEventListener("change", (event) => {
+    const bookTitle = document.querySelector("#bookTitle").innerText;
+    const currentBookObject =
+      myLibrary[myLibrary.findIndex((book) => book.title === bookTitle)];
+
+    currentBookObject.toggle();
+    editDetails(currentBookObject);
+    currentBookObject.status
+      ? (toggleReadButton.checked = true)
+      : (toggleReadButton.checked = false);
+
+    myLibrary[myLibrary.findIndex((book) => book.title === bookTitle)] =
+      currentBookObject;
+    addToStorage(myLibrary);
   });
 }
 
@@ -160,5 +186,48 @@ function closeBookModal() {
 function windowCloseBookModal(event) {
   if (event.target == bookModal) {
     bookModal.style.display = "none";
+  }
+}
+
+function storageAvailable(type) {
+  var storage;
+  try {
+    storage = window[type];
+    var x = "__storage_test__";
+    storage.setItem(x, x);
+    storage.removeItem(x);
+    return true;
+  } catch (e) {
+    return (
+      e instanceof DOMException &&
+      // everything except Firefox
+      (e.code === 22 ||
+        // Firefox
+        e.code === 1014 ||
+        // test name field too, because code might not be present
+        // everything except Firefox
+        e.name === "QuotaExceededError" ||
+        // Firefox
+        e.name === "NS_ERROR_DOM_QUOTA_REACHED") &&
+      // acknowledge QuotaExceededError only if there's something already stored
+      storage &&
+      storage.length !== 0
+    );
+  }
+}
+
+function addToStorage(library) {
+  if (storageAvailable("localStorage")) {
+    localStorage.setItem("library", JSON.stringify(library));
+  } else {
+    console.log("localStorage not available.");
+  }
+}
+
+function removeFromStorage() {
+  if (storageAvailable("localStorage")) {
+    localStorage.removeItem("library");
+  } else {
+    console.log("localStorage not available.");
   }
 }
